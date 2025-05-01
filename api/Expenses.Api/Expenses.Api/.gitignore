@@ -1,0 +1,5 @@
+.idea/
+bin/
+obj/
+appsettings.Local.json
+appsettings.Production.json
