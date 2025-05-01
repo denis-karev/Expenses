@@ -10,8 +10,8 @@ public sealed class GroupRepository(NpgsqlConnection connection) : IGroupReposit
     public async Task CreateAsync(GroupInfo info)
     {
         const String sql = """
-                           INSERT INTO groups (id, name, currency, short_code, created_at)
-                           VALUES (@Id, @Name, @Currency, @ShortCode, @CreatedAt)
+                           INSERT INTO groups (id, name, currency, created_at)
+                           VALUES (@Id, @Name, @Currency, @CreatedAt)
                            """;
         await connection.ExecuteAsync(sql, info);
     }

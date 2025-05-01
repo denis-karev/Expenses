@@ -16,7 +16,6 @@ namespace ConsoleApplication1.Migrations
                 .WithColumn("id").AsGuid().PrimaryKey().NotNullable()
                 .WithColumn("name").AsString().NotNullable()
                 .WithColumn("currency").AsString().ForeignKey("currencies", "code").OnDeleteOrUpdate(Rule.None).NotNullable()
-                .WithColumn("short_code").AsString().Unique().Nullable()
                 .WithColumn("created_at").AsDateTimeOffset().NotNullable();
             
             Create.Table("group_members")

@@ -16,11 +16,17 @@ public sealed class AuthService(
 {
     public async Task<InvokeResult<TokenResponse>> AuthenticateAsync(TokenRequest request)
     {
-        return request.Method.ThrowIfNull() switch
+        try
         {
-            EAuthMethod.Google => await new GoogleAuthStrategy(context, encryption, encryptionOptions, tokens)
-                .AuthenticateAsync(request.Google.ThrowIfNull()),
-            _ => throw new ArgumentOutOfRangeException(nameof(request))
-        };
+            return request.Method.ThrowIfNull() switch
+            {
+                EAuthMethod.Google => await new GoogleAuthStrategy(context, encryption, encryptionOptions, tokens)
+                    .AuthenticateAsync(request.Google.ThrowIfNull()),
+                _ => throw new ArgumentOutOfRangeException(nameof(request))
+            };
+        } catch (Exception e)
+        {
+            return InvokeResult<TokenResponse>.CreateError(EErrorType.InternalServerError, e.Message);
+        }
     }
 }

@@ -10,21 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcece060-2717-4806-8ce2-f4afb5f85e9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/CurrencyRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/GroupMemberRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/GroupRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database/Migrations/20250501164846_AddGroups.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database/Repositories/ICurrencyRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database/Repositories/IGroupMemberRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Database/Repositories/IGroupRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Model/CurrencyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Model/GroupInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Expenses.Api.Model/GroupMemberInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Controllers/GroupsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Entities/Group.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Entities/GroupMember.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Framework/ExtendedControllerBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Framework/OnRequestServiceBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Models/GroupModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Models/GroupSpec.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Expenses.Api/Services/GroupService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Expenses.Api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Expenses.Api/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/PostgresContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/PostgresContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Expenses.Api.Database/IDatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Database/IDatabaseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Expenses.Api/Controllers/Auth/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Controllers/Auth/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Expenses.Api/Services/Auth/GoogleAuthStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Services/Auth/GoogleAuthStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api.Common/ErrorType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Common/ErrorType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/CurrencyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/CurrencyRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/GroupRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Database.Postgres/Repositories/GroupRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api.Database/Migrations/20250501164846_AddGroups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Database/Migrations/20250501164846_AddGroups.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api.Database/Repositories/ICurrencyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Database/Repositories/ICurrencyRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api.Model/GroupInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api.Model/GroupInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api/Controllers/Auth/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api/Expenses.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Expenses.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expenses.Api/Services/Auth/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Expenses.Api/Services/Auth/AuthService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746076144271</updated>
-      <workItem from="1746076145407" duration="4464000" />
+      <workItem from="1746076145407" duration="10804000" />
     </task>
     <task id="LOCAL-00001" summary="auth">
       <option name="closed" value="true" />
@@ -126,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746076251905</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="db infrastructure for groups">
+      <option name="closed" value="true" />
+      <created>1746114157751</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746114157751</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +150,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth" />
+    <MESSAGE value="db infrastructure for groups" />
+    <option name="LAST_COMMIT_MESSAGE" value="db infrastructure for groups" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

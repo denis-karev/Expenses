@@ -21,6 +21,14 @@ public sealed class User
         return new User(context, info);
     }
 
+    public static async Task<User?> FindAsync(IDatabaseContext context, Guid id)
+    {
+        var info = await context.Users.FindAsync(id);
+        if (info is null)
+            return null;
+        return new User(context, info);
+    }
+
     public static async Task<User?> FindByEmailAsync(IDatabaseContext context, String email)
     {
         var info = await context.Users.FindByEmailAsync(email);
