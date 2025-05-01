@@ -6,5 +6,9 @@ namespace Expenses.Api.Database;
 public interface IDatabaseContext : IDisposable, IAsyncDisposable
 {
     IDbConnection Connection { get; }
+    
     IUserRepository Users { get; }
+    ICurrencyRepository Currencies { get; }
+    IGroupRepository Groups { get; }
+    IGroupMemberRepository GroupMembers { get; }
 }

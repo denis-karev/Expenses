@@ -12,6 +12,10 @@ public sealed class AuthController(
 ) : ControllerBase
 {
     [HttpPost("token")]
+    [Consumes("application/json")]
+    [ProducesResponseType(typeof(TokenResponse), 200, "application/json")]
+    [ProducesResponseType(typeof(Error), 400, "application/json")]
+    [ProducesResponseType(typeof(Error), 500, "application/json")]
     public async Task<IActionResult> GetTokenAsync(TokenRequest request)
     {
         try
@@ -25,7 +29,7 @@ public sealed class AuthController(
         }
         catch (Exception e)
         {
-            logger.LogError(e, "Error while getting token");;
+            logger.LogError(e, "Error while getting token");
             return StatusCode(500, new Error(EErrorType.InternalServerError, e.Message));
         }
     }

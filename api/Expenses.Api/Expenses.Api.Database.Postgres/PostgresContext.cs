@@ -11,7 +11,11 @@ internal sealed class PostgresContext : IDatabaseContext
 {
     private readonly NpgsqlConnection _connection;
     public IDbConnection Connection => _connection;
+    
     public IUserRepository Users { get; }
+    public ICurrencyRepository Currencies { get; }
+    public IGroupRepository Groups { get; }
+    public IGroupMemberRepository GroupMembers { get; }
 
     static PostgresContext()
     {
@@ -24,6 +28,9 @@ internal sealed class PostgresContext : IDatabaseContext
         _connection = new NpgsqlConnection(connectionString);
         
         Users = new UserRepository(_connection);
+        Currencies = new CurrencyRepository(_connection);
+        Groups = new GroupRepository(_connection);
+        GroupMembers = new GroupMemberRepository(_connection);
         
         _connection.Open();
     }
