@@ -1,7 +1,7 @@
 using System.Data;
 using FluentMigrator;
 
-namespace ConsoleApplication1.Migrations
+namespace Expenses.Api.Database.Migrations
 {
     [Migration(20250501164846)]
     public class AddGroups : Migration

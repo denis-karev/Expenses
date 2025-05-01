@@ -24,7 +24,7 @@ $filePath = Join-Path -Path $folderPath -ChildPath $fileName
 $content = @"
 using FluentMigrator;
 
-namespace ConsoleApplication1.Migrations
+namespace Expenses.Api.Database.Migrations
 {
     [Migration($timestamp)]
     public class $Name : Migration

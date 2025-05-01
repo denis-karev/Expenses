@@ -1,6 +1,6 @@
 using FluentMigrator;
 
-namespace ConsoleApplication1.Migrations
+namespace Expenses.Api.Database.Migrations
 {
     [Migration(20250501031109)]
     public class AddUsersTable : Migration
