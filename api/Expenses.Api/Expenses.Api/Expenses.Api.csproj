@@ -7,10 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+        <PackageReference Include="Google.Apis" Version="1.69.0" />
+        <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
+        <PackageReference Include="Google.Apis.Core" Version="1.69.0" />
+        <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.68.0.1869" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.9.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.9.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Expenses.Api.Common\Expenses.Api.Common.csproj" />
       <ProjectReference Include="..\Expenses.Api.Database.Postgres\Expenses.Api.Database.Postgres.csproj" />
       <ProjectReference Include="..\Expenses.Api.Database\Expenses.Api.Database.csproj" />
     </ItemGroup>

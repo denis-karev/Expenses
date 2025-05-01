@@ -7,12 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.1.66" />
       <PackageReference Include="FluentMigrator" Version="7.1.0" />
       <PackageReference Include="FluentMigrator.Runner.Core" Version="7.1.0" />
       <PackageReference Include="FluentMigrator.Runner.Postgres" Version="7.1.0" />
+      <PackageReference Include="Npgsql" Version="9.0.3" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Expenses.Api.Common\Expenses.Api.Common.csproj" />
       <ProjectReference Include="..\Expenses.Api.Database\Expenses.Api.Database.csproj" />
     </ItemGroup>
 

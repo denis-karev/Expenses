@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 using Expenses.Api.Database;
 using Expenses.Api.Database.Postgres;
 using Expenses.Api.Options;
+using Expenses.Api.Services.Auth;
+using Expenses.Api.Services.Encryption;
+using FluentMigrator.Runner;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +15,17 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetRequiredSection("Jwt"));
+builder.Services.Configure<EncryptionOptions>(builder.Configuration.GetRequiredSection("Encryption"));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMigrationsRunner();
-builder.Services.AddPostgres(builder.Configuration.GetConnectionString("Database") ?? throw new Exception("No connection string found"));
+builder.Services.AddPostgres(builder.Configuration.GetConnectionString("Default") ?? throw new Exception("No default connection string found"));
+
+builder.Services.AddSingleton<EncryptionService>();
+builder.Services.AddSingleton<JwtTokenService>();
+builder.Services.AddScoped<AuthService>();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -29,6 +37,12 @@ builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
+}
 
 if (app.Environment.IsDevelopment())
 {

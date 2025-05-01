@@ -1,6 +1,5 @@
 namespace Expenses.Api.Models.Auth;
 
-public enum EAuthMethod
+public interface IAuthRequest
 {
-    Google
 }

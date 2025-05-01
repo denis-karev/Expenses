@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Api.Database.Postg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Api.Database", "Expenses.Api.Database\Expenses.Api.Database.csproj", "{2706E610-598D-4A8F-A834-666B48764944}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Api.Common", "Expenses.Api.Common\Expenses.Api.Common.csproj", "{232485B0-1C37-4BF8-91EE-58862DFD41D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Api.Model", "Expenses.Api.Model\Expenses.Api.Model.csproj", "{F3109FFA-4218-40E5-9E41-04D82A21CE3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{2706E610-598D-4A8F-A834-666B48764944}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2706E610-598D-4A8F-A834-666B48764944}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2706E610-598D-4A8F-A834-666B48764944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232485B0-1C37-4BF8-91EE-58862DFD41D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232485B0-1C37-4BF8-91EE-58862DFD41D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232485B0-1C37-4BF8-91EE-58862DFD41D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232485B0-1C37-4BF8-91EE-58862DFD41D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3109FFA-4218-40E5-9E41-04D82A21CE3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3109FFA-4218-40E5-9E41-04D82A21CE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3109FFA-4218-40E5-9E41-04D82A21CE3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3109FFA-4218-40E5-9E41-04D82A21CE3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

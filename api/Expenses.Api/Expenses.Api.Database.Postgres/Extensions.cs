@@ -1,3 +1,5 @@
+using Expenses.Api.Database.Postgres.Repositories;
+using Expenses.Api.Database.Repositories;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +13,7 @@ public static class Extensions
             .ConfigureRunner(runner => runner
                 .AddPostgres()
                 .WithGlobalConnectionString(connectionString)
-                .ScanIn(typeof(IDatabaseContext).Assembly));
+                .ScanIn(typeof(IDatabaseContext).Assembly))
+            .AddScoped<IDatabaseContext, PostgresContext>();
     }
 }

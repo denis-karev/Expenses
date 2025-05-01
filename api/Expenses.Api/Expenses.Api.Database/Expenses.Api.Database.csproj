@@ -15,4 +15,8 @@
       <Folder Include="Migrations\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Expenses.Api.Model\Expenses.Api.Model.csproj" />
+    </ItemGroup>
+
 </Project>
