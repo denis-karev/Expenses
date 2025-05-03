@@ -16,4 +16,22 @@ public sealed class GroupMemberRepository(NpgsqlConnection connection) : IGroupM
 
         await connection.ExecuteAsync(sql, info);
     }
+
+    public async Task<IReadOnlyDictionary<Guid, GroupMemberInfo?>> FindByIdsInGroupAsync(Guid groupId, ICollection<Guid> ids)
+    {
+        const String sql = """
+                           SELECT * FROM group_members
+                           WHERE group_id = @GroupId AND id = ANY(@Ids);
+                           """;
+        var results = (await connection.QueryAsync<GroupMemberInfo>(sql, new { GroupId = groupId, Ids = ids })).ToHashSet();
+        return ids.ToDictionary(x => x, x => results.FirstOrDefault(y => y.Id == x));
+    }
+
+    public async Task<Boolean> IsGroupMemberAsync(Guid groupId, Guid userId)
+    {
+        const String sql = """
+                           SELECT EXISTS(SELECT 1 FROM group_members WHERE group_id = @GroupId AND user_id = @UserId);
+                           """;
+        return await connection.QuerySingleAsync<Boolean>(sql, new { GroupId = groupId, UserId = userId });
+    }
 }

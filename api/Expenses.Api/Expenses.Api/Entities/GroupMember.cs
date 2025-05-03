@@ -9,7 +9,7 @@ public sealed class GroupMember
     
     public GroupMemberInfo Info { get; private set; }
 
-    private GroupMember(IDatabaseContext context, GroupMemberInfo info)
+    public GroupMember(IDatabaseContext context, GroupMemberInfo info)
     {
         _context = context;
         Info = info;

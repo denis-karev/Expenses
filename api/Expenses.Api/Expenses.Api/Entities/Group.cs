@@ -27,4 +27,23 @@ public sealed class Group
         
         return new Group(context, info);
     }
+
+    public static async Task<Group?> FindAsync(IDatabaseContext context, Guid id)
+    {
+        var group = await context.Groups.FindAsync(id);
+        if (group is null)
+            return null;
+        return new Group(context, group);
+    }
+
+    public async Task<IReadOnlyDictionary<Guid, GroupMember?>> FindGroupMembersByIds(ICollection<Guid> ids)
+    {
+        var members = await _context.GroupMembers.FindByIdsInGroupAsync(Info.Id, ids);
+        return members.ToDictionary(x => x.Key, x => x.Value is null ? null : new GroupMember(_context, x.Value));
+    }
+    
+    public async Task<Boolean> IsGroupMember(Guid userId)
+    {
+        return await _context.GroupMembers.IsGroupMemberAsync(Info.Id, userId);
+    }
 }

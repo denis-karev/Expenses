@@ -1,4 +1,4 @@
-namespace Expenses.Api.Models;
+namespace Expenses.Api.Models.Groups;
 
 public sealed record GroupModel(
     Guid Id,

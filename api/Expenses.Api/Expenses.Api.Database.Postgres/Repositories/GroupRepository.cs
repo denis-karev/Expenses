@@ -15,4 +15,12 @@ public sealed class GroupRepository(NpgsqlConnection connection) : IGroupReposit
                            """;
         await connection.ExecuteAsync(sql, info);
     }
+
+    public async Task<GroupInfo?> FindAsync(Guid id)
+    {
+        const String sql = """
+                           SELECT * FROM groups WHERE id = @Id;
+                           """;
+        return await connection.QuerySingleOrDefaultAsync<GroupInfo>(sql, new { Id = id });
+    }
 }

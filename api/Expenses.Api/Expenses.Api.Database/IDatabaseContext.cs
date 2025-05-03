@@ -11,4 +11,7 @@ public interface IDatabaseContext : IDisposable, IAsyncDisposable
     ICurrencyRepository Currencies { get; }
     IGroupRepository Groups { get; }
     IGroupMemberRepository GroupMembers { get; }
+    IExpenseRepository Expenses { get; }
+    IExpenseCreditRepository ExpenseCredits { get; }
+    IExpenseDebtRepository ExpenseDebts { get; }
 }

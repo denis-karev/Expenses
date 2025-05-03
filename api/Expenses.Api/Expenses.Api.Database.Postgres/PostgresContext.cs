@@ -16,6 +16,9 @@ internal sealed class PostgresContext : IDatabaseContext
     public ICurrencyRepository Currencies { get; }
     public IGroupRepository Groups { get; }
     public IGroupMemberRepository GroupMembers { get; }
+    public IExpenseRepository Expenses { get; }
+    public IExpenseCreditRepository ExpenseCredits { get; }
+    public IExpenseDebtRepository ExpenseDebts { get; }
 
     static PostgresContext()
     {
@@ -31,6 +34,9 @@ internal sealed class PostgresContext : IDatabaseContext
         Currencies = new CurrencyRepository(_connection);
         Groups = new GroupRepository(_connection);
         GroupMembers = new GroupMemberRepository(_connection);
+        Expenses = new ExpenseRepository(_connection);
+        ExpenseCredits = new ExpenseCreditRepository(_connection);
+        ExpenseDebts = new ExpenseDebtRepository(_connection);
         
         _connection.Open();
     }
