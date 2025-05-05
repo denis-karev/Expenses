@@ -3,7 +3,7 @@ using Expenses.Api.Database;
 using Expenses.Api.Entities;
 using Expenses.Api.Framework;
 using Expenses.Api.Model;
-using Expenses.Api.Models;
+using Expenses.Api.Models.GroupMembers;
 using Expenses.Api.Models.Groups;
 
 namespace Expenses.Api.Services;
@@ -60,5 +60,59 @@ public sealed class GroupService(
             return InvokeResult<GroupInfo>.CreateError(EErrorType.BadRequest, $"Invalid currency {currencyName}.");
 
         return InvokeResult<GroupInfo>.CreateSuccess(spec);
+    }
+
+    public async Task<InvokeResult<GroupMemberModel>> AddMemberAsync(Guid id, AddGroupMemberSpec spec)
+    {
+        try
+        {
+            if (spec.Type is EGroupMemberType.User && spec.User is null)
+                return InvokeResult<GroupMemberModel>.CreateError(EErrorType.BadRequest, "User model cannot be null.");
+            if (spec.Type is EGroupMemberType.Offline && spec.Offline is null)
+                return InvokeResult<GroupMemberModel>.CreateError(EErrorType.BadRequest,
+                    "Offline model cannot be null.");
+
+            var currentUser = await GetCurrentUserAsync();
+            if (!currentUser.IsSuccess)
+                return InvokeResult<GroupMemberModel>.CreateError(currentUser.CheckedError);
+
+            var group = await Group.FindAsync(_context, id);
+            if (group is null)
+                return InvokeResult<GroupMemberModel>.CreateError(EErrorType.BadRequest, "Invalid group ID.");
+
+            if (!await group.IsGroupMember(currentUser.CheckedResult.Info.Id))
+                return InvokeResult<GroupMemberModel>.CreateError(EErrorType.Unauthorized,
+                    "You do not have permission to add members to this group.");
+
+            if (spec.Type is EGroupMemberType.User)
+            {
+                var user = await User.FindAsync(_context, spec.User!.UserId);
+                if (user is null)
+                    return InvokeResult<GroupMemberModel>.CreateError(EErrorType.BadRequest, "Invalid user ID.");
+            }
+
+            var groupMember = new GroupMemberInfo(
+                Id: Guid.NewGuid(),
+                GroupId: group.Info.Id,
+                UserId: spec.User?.UserId,
+                Name: spec.Offline?.Name,
+                JoinedAt: DateTimeOffset.UtcNow
+            );
+            await GroupMember.CreateAsync(_context, groupMember);
+
+            var result = new GroupMemberModel(
+                Id: groupMember.Id,
+                GroupId: groupMember.GroupId,
+                UserId: groupMember.UserId,
+                Name: groupMember.Name,
+                JoinedAt: groupMember.JoinedAt
+            );
+            return InvokeResult<GroupMemberModel>.CreateSuccess(result);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error occured while adding a member to a group: {GroupMember}.", spec);
+            return InvokeResult<GroupMemberModel>.CreateError(EErrorType.InternalServerError, e.Message);
+        }
     }
 }
